@@ -1,0 +1,13 @@
+<h1>Log In</h1>
+
+<form action="<%= session_url %>" method="post" accept-charset="utf-8">
+  <%= form_auth_token %>
+
+  <label for="username">Username</label>
+  <input type="text" name="user[username]" id="username">
+
+  <label for="password">Password</label>
+  <input type="password" name="user[password]" id="password">
+
+  <p><input type="submit" value="Back to the Hunt!"></p>
+</form>
