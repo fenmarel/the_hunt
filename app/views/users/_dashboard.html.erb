@@ -1,0 +1,6 @@
+<div id="applied-list" class="list-group">
+  <% job_applications.order(:application_date).each do |application| %>
+    <%= render 'job_applications/application', :application => application,
+                                               :rejected => rejected %>
+  <% end %>
+</ul>

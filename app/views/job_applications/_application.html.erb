@@ -1,0 +1,25 @@
+<div class="list-group-item">
+  <span class="col-sm-4 col-xs-4">
+    <%= link_to application.job_title, application.url %>
+  </span>
+  <span class="col-sm-3 col-xs-3">
+    <%= application.company %>
+  </span>
+  <span class="col-sm-2 col-xs-3">
+    <%= application.application_date.to_date %>
+  </span>
+  <% if rejected %>
+    <span class="col-sm-2 col-xs-3">
+      <%= application.reply_date.to_date %>
+    </span>
+    <%= link_to "renew", renew_job_application_url(application),
+                :method => :post, :class => "btn btn-success btn-xs"%>
+  <% else %>
+    <%= link_to "denied", denied_job_application_url(application),
+                :method => :post, :class => "btn btn-warning btn-xs"%>
+    <%= link_to "edit", edit_job_application_url(application),
+                :class => "btn btn-default btn-xs"%>
+    <%= link_to "remove", job_application_url(application), :method => :delete,
+                :class => "btn btn-danger btn-xs"%>
+  <% end %>
+</div>

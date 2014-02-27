@@ -1,0 +1,34 @@
+<% form_action = action == :new ? user_job_applications_url(user) :
+                                  job_application_url(job_application)%>
+<% form_method = action == :new ? 'POST' : 'PATCH' %>
+<% form_submit = action == :new ? 'Applied!' : 'Update Application' %>
+
+<form action="<%= form_action %>"
+      method="post" accept-charset="utf-8">
+
+  <input type="hidden" name="authenticity_token"
+         value="<%= form_authenticity_token %>" id="authenticity_token">
+
+  <input type="hidden" name="_method" value="<%= form_method %>">
+
+  <label>
+    Job Title
+    <input type="text" name="job_application[job_title]"
+           value="<%= job_application.job_title %>">
+  </label>
+
+  <label>
+    Company
+    <input type="text" name="job_application[company]"
+           value="<%= job_application.company %>">
+  </label>
+
+  <label>
+    Reference URL
+    <input type="text" name="job_application[url]"
+           value="<%= job_application.url %>">
+  </label>
+
+  <input type="submit" value="<%= form_submit %>"
+         class="btn btn-success" id="applied-button">
+</form>

@@ -24,7 +24,12 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav pull-left">
           <% if logged_in? %>
-            <li><%= link_to "Dashboard", user_url(current_user) %></li>
+            <li>
+              <%= link_to "Dashboard", user_url(current_user) %>
+            </li>
+            <li>
+              <%= link_to "Rejections", rejections_user_url(current_user) %>
+            </li>
           <% end %>
         </ul>
 
@@ -43,6 +48,18 @@
   </nav>
 
   <div class="container">
+    <% if flash[:errors] %>
+      <div class="alert alert-danger">
+        <ul>
+          <% flash[:errors].each do |error| %>
+          <li>
+            <%= error %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <%= yield %>
   </div>
 

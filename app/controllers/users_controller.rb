@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if not @user.confirms_password(password_params)
-      flash.now[:errors] = "password and confirmation do not match"
+      flash.now[:errors] = ["password and confirmation do not match"]
       render :new
     elsif @user.save
       login!(@user)
@@ -20,8 +20,17 @@ class UsersController < ApplicationController
     render :new
   end
 
+  def rejections
+    @user = User.find(params[:id])
+    @job_applications = @user.rejections
+
+    render :rejections
+  end
+
   def show
     @user = User.find(params[:id])
+    @job_application = JobApplication.new
+    @job_applications = @user.pending_applications
 
     render :show
   end

@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226194917) do
+ActiveRecord::Schema.define(version: 20140226214440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "job_applications", force: true do |t|
+    t.integer  "user_id"
+    t.string   "job_title"
+    t.string   "company"
+    t.string   "url"
+    t.string   "status",           default: "PENDING"
+    t.datetime "application_date"
+    t.datetime "reply_date"
+  end
+
+  add_index "job_applications", ["application_date"], name: "index_job_applications_on_application_date", using: :btree
+  add_index "job_applications", ["status"], name: "index_job_applications_on_status", using: :btree
+  add_index "job_applications", ["user_id"], name: "index_job_applications_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username",        null: false

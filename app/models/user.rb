@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   before_validation :ensure_session_token
 
+  has_many :job_applications
+
 
   def self.generate_token
     SecureRandom::urlsafe_base64(24)
@@ -32,6 +34,14 @@ class User < ActiveRecord::Base
     self.save!
 
     self.session_token
+  end
+
+  def pending_applications
+    self.job_applications.where("status = 'PENDING'")
+  end
+
+  def rejections
+    self.job_applications.where("status = 'DENIED'")
   end
 
 

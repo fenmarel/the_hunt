@@ -1,3 +1,13 @@
 <h1><%= @user.username %>'s Dashboard</h1>
 
-stuff
+<div class="alert-info" id="apply-form">
+  <h3>New Job Possibility</h3>
+
+  <%= render 'job_applications/form', :user => @user,
+                                      :job_application => @job_application,
+                                      :action => :new %>
+</div>
+
+<%= render 'dashboard', :job_applications => @job_applications,
+                        :rejected => false %>
+
